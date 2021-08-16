@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class = "text-center py-2">Add To Do</h1>
+    <hr>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class = "d-flex d-inline-block py-2">
+            <button class = "btn btn-primary" type = "submit"><i class="fas fa-plus"></i> Add</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

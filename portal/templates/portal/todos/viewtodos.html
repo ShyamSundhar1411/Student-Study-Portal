@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "container">
+    <h1 class = "text-center py-2">To Do{{todos.count|pluralize}}</h1>
+    <hr/>
+    {% if todos %}
+        {% for todo in todos %}
+        {% endfor %}
+    {% else %}
+    <div class = "d-flex d-inline-block justify-content-center">
+        <a class = "btn btn-primary" href = "{% url 'create_todo' %}"><i class="fas fa-plus"></i> Add Todos</a>
+    </div>
+    
+    {% endif %}
+</div>
+{% endblock %}

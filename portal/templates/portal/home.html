@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="{% url 'view_all_todos' %}">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'todo.png' %}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>To Do</h6>
+                                    <p>Add the to-do list for the day through this portal and customize the list, the way you want it. Completed works can be marked as completed. This helps you feel more productive.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'notes.jfif' %}" alt="" />
+                                </div>
+                                <div class="text-container">                                    
+                                    <h6>Notes</h6>
+                                    <p>Add notes through this portal.These are saved permanently unless they are deleted.They can be saved as PDF in the local machine or can also be sent the registered mail.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'homework.jpg' %}" alt="" />
+                                </div>
+
+                                <div class="text-container">
+                                    <h6>HomeWork</h6>
+                                   <p>Add your homework list here and customize the list, the way you want it.Completed Homeworks can be marked as completed.If not alerts are sent to the registered mail before the due date.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'dictionary.jpg' %}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>Dictionary</h6>
+                                   <p>Here is the dictionary. Find out the words and their meanings in ease without much struggle.Improve your vocabulary and gain knowledge.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'wikipedia.jfif' %}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>WikiPedia</h6>
+                                   <p>Here is the WikiPedia. Browse contents and gain knowledge.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'books.jpg' %}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>Books</h6>
+                                   <p>Explore Books through this portal.Get info about the books instantly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static 'youtube.jfif' %}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>YouTube</h6>
+                                   <p>Use this portal to browse educational videos and get results via youtube.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

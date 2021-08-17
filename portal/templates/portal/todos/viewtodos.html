@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class = "container">
-    <h1 class = "text-center py-2">To Do{{todos.count|pluralize}}</h1>
+<div class = "container py-2">
+    <h1 class = "text-center">To Do{{todos.count|pluralize}}</h1>
     <hr/>
     {% if todos %}
     <div class = "row justify-content-center">
@@ -26,20 +26,14 @@
                               {% if todo.is_completed %}
                                   <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
                                     <s>
-                                      {% if todo.important %}
-                                        <i class="fas fa-exclamation-triangle"></i> {{todo.title}} - {{todo.created|date:"F d"}}
-                                      {% else %}
-                                        {{todo.title}} - {{todo.created|date:"F d"}}
-                                      {% endif %}
+                                      {% if todo.important %} <i class="fas fa-exclamation-triangle"></i>{% endif %} {{todo.title}} - {{todo.created|date:"F d"}}
+                                       
                                     </s>
                                   </a>
                               {% else %}
                                 <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
-                                  {% if todo.important %}
-                                    <i class="fas fa-exclamation-triangle"></i> {{todo.title}} - {{todo.created|date:"F d"}}
-                                  {% else %}
-                                    {{todo.title}} - {{todo.created|date:"F d"}}
-                                  {% endif %}
+                                  {% if todo.important %}<i class="fas fa-exclamation-triangle"></i>{% endif %} {{todo.title}} - {{todo.created|date:"F d"}}
+                                  
                                 </a>
                               {% endif %}
                               <div class =  "d-inline-block">

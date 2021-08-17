@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class = "container py-2">
+    <h1 class = "text-center">Note{{note_count|pluralize}}</h1>
+    <hr/>
+    {% if Notes %}
+    <div class='container d-inline-block'>
+        <div class = "row">
+            {% for note in Notes %}
+                <div class = "col-lg-4 col-md-6">
+                    <div class="card custom-card border border-dark" style = 'margin-bottom: 15px;'>
+                        <a class = "custom-link" href="{% url 'view_detailed_note' note.id note.slug %}">
+                            <div class="card-body">
+                                <h5 class="card-title">Title : {{note.title}} {% if note.important %}‼{% endif %}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Subject :  {{note.subject}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-calendar-day"></i> {{note.updated_on}}</h6>
+                                <div class = "row">
+                                    <p class="card-text">{{ note.notes|safe|truncatechars:150 }}</p>
+                                </div>
+                                <div class = "d-inline-block">
+                                    <a href="{% url 'update_note' note.id note.slug %}" class="btn btn-primary me-1">Update</a>
+                                    <a href="{% url 'delete_note' note.id note.slug %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if Notes.has_other_pages %}
+      <ul class = 'pagination justify-content-center'>
+        {% if Notes.has_previous %}
+          <li class = 'page-item'><a class="page-link" href="?page={{ Notes.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+      <li class="disabled page-item" ><a href="#" class="page-link">&laquo;</a></li>
+    {% endif %}
+    {% for num in Notes.paginator.page_range %}
+      {% ifequal num Notes.number %}
+        <li class="active page-item"><a href="#" class="page-link">{{ num }}<span class="sr-only">(current)</span></a></li>
+      {% else %}
+        <li class = 'page-item'><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+      {% endifequal %}
+    {% endfor %}
+    {% if Notes.has_next %}
+      <li class = 'page-item'><a class="page-link" href="?page={{ Notes.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><a class="page-link" href="#">&raquo;</a></li>
+    {% endif %}
+      </ul>
+      {% endif %}
+            <div class = "d-flex d-inline-block float-end py-2">
+                <a href = "{% url 'create_note' %}" class = "btn btn-primary"><i class="fas fa-plus"></i> Add Note</a>
+            </div>
+    {% else %}
+        <div class = "d-flex d-inline-block justify-content-center">
+            <a href = "{% url 'create_note' %}" class = "btn btn-primary"><i class="fas fa-plus"></i> Add Note</a>
+        </div>
+    </div>
+    {% endif %}
+    
+</div>
+{% endblock %}

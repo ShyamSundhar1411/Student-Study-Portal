@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container py-2">
+    <h1 class = "text-center">{{note.title}}</h1>
+    <hr/>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <div class="d-inline-block d-flex py-2">
+            <button class = "btn btn-success" type = "submit">Update</button>
+            <a class = "btn btn-danger" href = "{% url 'delete_note' note.id note.slug %}">Delete</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

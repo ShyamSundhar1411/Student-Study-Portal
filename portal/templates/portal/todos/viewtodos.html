@@ -4,13 +4,64 @@
     <h1 class = "text-center py-2">To Do{{todos.count|pluralize}}</h1>
     <hr/>
     {% if todos %}
-        {% for todo in todos %}
-        {% endfor %}
+    <div class = "row justify-content-center">
+        <div class = "col-md-6">
+            <div class = "card">
+                <div class="card-header custom-header">
+                    <h1>Hello {{user.username}}</h1>
+                    <h6 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }}</h6>
+                </div>
+                <div class = "card-body">
+                    <div class="d-flex w-100">
+                        <form class = "d-flex d-inline-block" method = "GET" >
+                            <input class="form-control me-sm-1" name = "search" type="text" placeholder="Search" value = "{{search_input}}" />
+                            <button class="btn btn-primary" type="submit">Search</button>
+
+                        </form>
+                    </div>
+                    <hr/>
+                    <div class = "list-group rounded-lg border custom-group">
+                        {% for todo in todos %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              {% if todo.is_completed %}
+                                  <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
+                                    <s>
+                                      {% if todo.important %}
+                                        <i class="fas fa-exclamation-triangle"></i> {{todo.title}} - {{todo.created|date:"F d"}}
+                                      {% else %}
+                                        {{todo.title}} - {{todo.created|date:"F d"}}
+                                      {% endif %}
+                                    </s>
+                                  </a>
+                              {% else %}
+                                <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
+                                  {% if todo.important %}
+                                    <i class="fas fa-exclamation-triangle"></i> {{todo.title}} - {{todo.created|date:"F d"}}
+                                  {% else %}
+                                    {{todo.title}} - {{todo.created|date:"F d"}}
+                                  {% endif %}
+                                </a>
+                              {% endif %}
+                              <div class =  "d-inline-block">
+                                <a class = "text-decoration-none" href = "{% url 'update_todo' todo.id todo.slug %}" ><span class="badge bg-primary rounded-pill"><i class = "fas fa-edit"></i></span></a>
+                                <form method = "POST" action = "{% url 'delete_todo' todo.id todo.slug %}">
+                                  {% csrf_token %}
+                                  <button class = "badge bg-primary rounded-pill" type = "submit"><i class = "fas fa-trash"></i></button>
+                                </form>
+                              </div>
+                            </li>
+                        {% endfor %}
+                    </div>
+                    <br/>
+                    <a class = "btn btn-primary float-end" href = "{% url 'create_todo' %}"><i class="fas fa-plus"></i> Add Todos</a>
+                </div>
+            </div>
+        </div>
+    </div>
     {% else %}
     <div class = "d-flex d-inline-block justify-content-center">
         <a class = "btn btn-primary" href = "{% url 'create_todo' %}"><i class="fas fa-plus"></i> Add Todos</a>
     </div>
-    
     {% endif %}
 </div>
 {% endblock %}

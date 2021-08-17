@@ -1,3 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class = "text-center py-2">Update To Do</h1>
+    <hr>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class = "d-flex d-inline-block py-2">
+            <button class = "btn btn-success me-2" type = "submit"> Update</button>
+            <form method = "POST" action = "{% url 'delete_todo' todo.id todo.slug %}">
+              {% csrf_token %}
+              <button class = "btn btn-danger" type = "submit">Delete</button>
+            </form>
+        </div>
+    </form>
+</div>
 {% endblock %}

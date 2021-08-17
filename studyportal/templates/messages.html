@@ -1,6 +1,6 @@
 {% for message in messages %}
 {% if forloop.last %}
-<div class="container-fluid p-0" id = 'message' style = "display:none;">
+<div class="container-fluid py-2" id = 'message' style = "display:none;">
   <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close" id = "custom">
     </button>
@@ -32,4 +32,3 @@ $(message)
   }, 6000);
 </script>
 {% endfor %}
-

@@ -9,19 +9,20 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import environ
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+env = environ.Env()
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@8%*%#d2yx+-y+fa&tr11!ffqor0&76mh9#brecyb7#b6jfi82'
+SECRET_KEY = env.str('SECRET_KEY', default='ThisIsAWeakSauceSecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     #Third Party Apps
     'tinymce',
     'autoslug',
-    'crispy_forms'
+    'crispy_forms',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +159,15 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+#Celery Backends
+CELERY_RESULTS_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'django-cache'
+#Email Backends
+EMAIL_BACKEND = env.str('EMAIL_BACKEND')
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = False
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env.int('EMAIL_PORT')
+DEFAULT_FROM_EMAIL = 'Study Portal Team <noreply@lazynotes.com>'

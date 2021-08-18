@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container py-2">
+  <form method = 'POST'>
+    {% csrf_token %}
+    {{form|crispy}}
+    <div class = "d-flex d-inline-block py-2">
+      <button type = 'submit' class = 'btn btn-primary'>Search</button>
+    </div>
+  </form>
+  <div class = "row justify-content-center">
+    <div class = "col-md-6">
+      <div class = "card mb-2">
+        <div class = "card-header">
+          <h3>{{input}}</h3>
+        </div>
+        <div class = "card-body">
+          <p>Phonetics : {{phonetics}}</p>
+          <p>
+            Audio :
+            <audio id = "player" src = "{{audio}}"></audio>
+            <a onclick = "document.getElementById('player').play()"><i class = "fa fa-volume-up"></i></a>
+          </p>
+          <p>Definiton : {{definition}}</p>
+          <p>Example : {{example}}</p>
+          <p>Synonyms :
+            {% if synonyms %}
+            <ul class = "content-container">
+              {% for synonym in synonyms %}
+              <li>{{synonym}}</li>
+              {% endfor %}
+            </ul>
+            {% else %}
+            -
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

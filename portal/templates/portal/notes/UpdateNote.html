@@ -9,7 +9,7 @@
         {{form.media}}
         {{form|crispy}}
         <div class="d-inline-block d-flex py-2">
-            <button class = "btn btn-success" type = "submit">Update</button>
+            <button class = "btn btn-success me-2" type = "submit">Update</button>
             <a class = "btn btn-danger" href = "{% url 'delete_note' note.id note.slug %}">Delete</a>
         </div>
     </form>

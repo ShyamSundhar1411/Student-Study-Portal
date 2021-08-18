@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "container">
+    <h1 class = "text-center">{{note.title}}</h1>
+    <hr/>
+    <div class  = "display-inline d-flex float-end py-1">
+        <div class="dropdown">
+            <a class="dropdown-toggle text-decoration-none btn border border-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Generate PDF
+            </a>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'render_to_pdf_and_download' note.id note.slug %}">Download</a></li>
+                <li><a class="dropdown-item" href="{% url 'render_to_pdf_and_mail' note.id note.slug %}">Send Mail</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class = "content-container container-fluid border border-dark">
+        <div class = "subtitle text-muted py-1">Updated On : {{note.updated_on}}</div>
+        <div class = "subtitle text-muted py-1">Subject : {{note.subject}}</div>
+        {{note.media}}
+        {{note.notes|safe}}
+    </div>
+    <div class  = "d-inline-block d-flex py-2">
+        <a href = "{% url 'update_note' note.id note.slug %}" class = "btn btn-primary me-2">Update</a>
+        <a href = "{% url 'delete_note' note.id note.slug %}" class = "btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endblock %}

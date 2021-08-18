@@ -143,3 +143,8 @@
 .custom-link:hover{
   color:black;
 }
+.content-container{
+  
+    overflow-y: auto;
+    height: 400px;
+}

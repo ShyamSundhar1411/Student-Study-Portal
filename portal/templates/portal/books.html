@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container py-2">
+  <form method = 'POST'>
+    {% csrf_token %}
+    {{form|crispy}}
+    <div class = "d-flex d-inline-block py-2">
+      <button type = 'submit' class = 'btn btn-primary'>Search</button>
+    </div>
+  </form>
+  <div class='container d-inline-block'>
+      <div class = 'row '>
+        {% for result in results %}
+        <div class = 'col-md-4'>
+          <div class="card card border-success mb-3">
+            {% if result.thumbnail %}
+              <img src="{{result.thumbnail}}" class="card-img" style = "height:200px;">
+            {% endif %}
+              <div class="card-body">
+                <h4 class="card-title">{{result.title}}</h4>
+                <hr/>
+                  <p>Subtitle : {{result.subtitle}}</p>
+                  <p>Descriptiom : {{result.description|truncatewords:50}}</p>
+                  <p>
+                    Category:
+                  {% if result.categories %}
+                      <ul>
+                      {% for category in result.categories %}
+                        <li>{{category}}</li>
+                      {% endfor %}
+                      </ul>
+                  {% else %}
+                  -
+                  {% endif %}
+                  </p>
+                  <p>Pages : {{result.count}}</p>
+                  <p>Rating : {{result.rating}}</p>
+                  <a href = "{{result.preview}}" target = "_blank">Preview Link</a>
+                </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+</div>
+{% endblock %}

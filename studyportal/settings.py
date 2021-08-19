@@ -26,9 +26,9 @@ environ.Env.read_env()
 SECRET_KEY = env.str('SECRET_KEY', default='ThisIsAWeakSauceSecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['study-portaru.herokuapp.com','http://study-portaru.herokuapp.com','https://study-portaru.herokuapp.com']
 
 
 # Application definition

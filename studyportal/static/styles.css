@@ -148,3 +148,26 @@
     overflow-y: auto;
     height: 400px;
 }
+@media screen and (max-width: 1090px) {
+  .profile-text{
+    font-size: 14px !important;
+  }
+}
+@media screen and (max-width: 980px) {
+  .profile-text{
+    font-size: 10px !important;
+  }
+}
+@media screen and (max-width: 980px) {
+  .profile-text{
+    font-size: 10px !important;
+  }
+}
+@media screen and (max-width: 770px) {
+  .profile-text{
+    font-size: 20px !important;
+  }
+}
+.footer-text{
+  text-decoration:none;
+}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% load static %}
+<div class = "container py-2">
+    <form method = "POST">
+        {{form|crispy}}
+        <div class="d-inline-block col-6 py-1 mx-auto">
+            <button class="btn btn-primary" type="submit">Signup</button>
+            or  <a  href = "{% provider_login_url 'google' method = 'oauth2'%}"><img src = '{% static "Google.png" %}' style = 'height:20px;width:20px;'></a>
+        </div>
+    </form>
+    <div class = "d-block">
+        <p>Already Having Account ?<a href = "{% url 'account_login' %}">Login</a></p>
+    </div>
+</div>
+{% endblock %}

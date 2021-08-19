@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container py-2">
+  <form method = 'POST'>
+    {% csrf_token %}
+    {{form|crispy}}
+    <div class = "d-flex d-inline-block py-2">
+      <button type = 'submit' class = 'btn btn-primary'>Search</button>
+    </div>
+  </form>
+  {% if title %}
+  <div class = "row justify-content-center">
+    <div class = "col-md-6">
+      <div class = "card mb-2">
+        <div class = "card-header">
+          <h3>{{title}}</h3>
+        </div>
+        <div class = "card-body">
+          <h5 class = "card-title text-center">Summary</h5>
+          <hr/>
+            <p class = "content-container">{{details}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

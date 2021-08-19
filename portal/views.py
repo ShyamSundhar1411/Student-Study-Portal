@@ -1,8 +1,9 @@
 import os
 import requests
-import urllib as u
+import wikipedia
 from io import BytesIO
 from xhtml2pdf import pisa
+from youtubesearchpython import VideosSearch
 from django.conf import settings
 from django.views import generic
 from django.utils import timezone
@@ -215,3 +216,41 @@ def books(request):
         return render(request,'portal/books.html',context)
     else:
         return render(request,'portal/books.html',{"form":form})
+def youtube(request):
+    form = SearchForm()
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        search_input = request.POST['search']
+        video = VideosSearch(search_input,limit = 10)
+        result_list = []
+        for i in video.result()['result']:
+            result_dict = {
+                'title': i['title'],
+                'thumbnail':i['thumbnails'][0]['url'],
+                'link': i['link'],
+                'id':i['id']
+            }
+            result_list.append(result_dict)
+        context = {
+            'form':form,
+            'results':result_list,
+            'input':search_input,
+        }
+        return render(request,'portal/youtube.html',context)
+    else:
+        return render(request,'portal/youtube.html',{"form":form})
+def wiki(request):
+    form = SearchForm()
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        search_input = request.POST['search']
+        search = wikipedia.page(search_input)
+        context = {
+            "form":form,
+            "title":search.title,
+            "link":search.url,
+            "details":search.summary,
+        }
+        return render(request,'portal/wiki.html',context)
+    else:
+        return render(request,'portal/wiki.html',{"form":form})

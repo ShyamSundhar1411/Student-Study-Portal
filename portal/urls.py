@@ -17,5 +17,11 @@ urlpatterns = [
     path('note/<int:pk>/render/to/pdf/<slug:slug>/send/mail',views.render_to_pdf_and_send_mail,name = "render_to_pdf_and_mail"),
     #Dictionary
     path('dictionary/',views.dictionary,name = "dictionary"),
+    #Books
     path('books/',views.books,name = "books"),
+    #Video
+    path('youtube/videos/',views.youtube,name = "videos"),
+    #WikiPedia
+    path('wikia/',views.wiki,name = "wikipedia"),
+
 ]

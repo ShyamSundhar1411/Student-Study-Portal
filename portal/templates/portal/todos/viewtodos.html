@@ -3,7 +3,6 @@
 <div class = "container py-2">
     <h1 class = "text-center">To Do{{todos.count|pluralize}}</h1>
     <hr/>
-    {% if todos %}
     <div class = "row justify-content-center">
         <div class = "col-md-6">
             <div class = "card">
@@ -21,19 +20,20 @@
                     </div>
                     <hr/>
                     <div class = "list-group rounded-lg border custom-group">
+                      {% if todos %}
                         {% for todo in todos %}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               {% if todo.is_completed %}
                                   <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
                                     <s>
                                       {% if todo.important %} <i class="fas fa-exclamation-triangle"></i>{% endif %} {{todo.title}} - {{todo.created|date:"F d"}}
-                                       
+
                                     </s>
                                   </a>
                               {% else %}
                                 <a class = "custom-todo-link" href = "{% url 'update_todo' todo.id todo.slug %}">
                                   {% if todo.important %}<i class="fas fa-exclamation-triangle"></i>{% endif %} {{todo.title}} - {{todo.created|date:"F d"}}
-                                  
+
                                 </a>
                               {% endif %}
                               <div class =  "d-inline-block">
@@ -45,6 +45,14 @@
                               </div>
                             </li>
                         {% endfor %}
+                        {% else %}
+                          {% if search_input %}
+                          <div class = "container justify-content-center text-center">
+                             <h1>No Results Found !!</h1>
+                             <a  href = "{% url 'view_all_todos' %}"><i class="fas fa-redo"></i></a>
+                           </div>
+                          {% endif %}
+                        {% endif %}
                     </div>
                     <br/>
                     <a class = "btn btn-primary float-end" href = "{% url 'create_todo' %}"><i class="fas fa-plus"></i> Add Todos</a>
@@ -52,10 +60,5 @@
             </div>
         </div>
     </div>
-    {% else %}
-    <div class = "d-flex d-inline-block justify-content-center">
-        <a class = "btn btn-primary" href = "{% url 'create_todo' %}"><i class="fas fa-plus"></i> Add Todos</a>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

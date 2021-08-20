@@ -28,7 +28,7 @@ SECRET_KEY = env.str('SECRET_KEY', default='ThisIsAWeakSauceSecretKey')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['study-portaru.herokuapp.com','http://study-portaru.herokuapp.com','https://study-portaru.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -68,7 +68,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'studyportal.urls'
@@ -96,7 +95,10 @@ WSGI_APPLICATION = 'studyportal.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -215,5 +217,4 @@ EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env.int('EMAIL_PORT')
 DEFAULT_FROM_EMAIL = 'Study Portal Team <noreply@lazynotes.com>'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"

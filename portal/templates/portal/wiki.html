@@ -14,9 +14,10 @@
   {% if title %}
   <div class = "row justify-content-center">
     <div class = "col-md-6">
+      <a class = "custom-link" href = "{{link}}" _blank = True>
       <div class = "card mb-2">
         <div class = "card-header">
-          <h3>{{title}}</h3>
+          <p class = "exact-title text-center">{{title}}</p>
         </div>
         <div class = "card-body">
           <h5 class = "card-title text-center">Summary</h5>
@@ -24,6 +25,7 @@
             <p class = "content-container">{{details}}</p>
         </div>
       </div>
+    </a>
     </div>
   </div>
   {% endif %}

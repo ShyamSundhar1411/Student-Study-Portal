@@ -18,9 +18,9 @@
                     <div class="card custom-card border border-dark" style = 'margin-bottom: 15px;'>
                         <a class = "custom-link" href="{% url 'view_detailed_note' note.id note.slug %}">
                             <div class="card-body">
-                                <h5 class="card-title">Title : {{note.title}} {% if note.important %}‼{% endif %}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Subject :  {{note.subject}}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-calendar-day"></i> {{note.updated_on}}</h6>
+                                <p class="card-title exact-card-title">Title : {{note.title}} {% if note.important %}‼{% endif %}</p>
+                                <p class="card-subtitle mb-2 text-muted">Subject :  {{note.subject}}</p>
+                                <p class="card-subtitle mb-2 text-muted"><i class="fas fa-calendar-day"></i> {{note.updated_on}}</p>
                                 <div class = "row">
                                     <p class="card-text">{{ note.notes|safe|truncatechars:150 }}</p>
                                 </div>

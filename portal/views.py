@@ -1,6 +1,6 @@
 import os
 import requests
-import wikipedia
+import wikipediaapi
 from io import BytesIO
 from xhtml2pdf import pisa
 from youtubesearchpython import VideosSearch
@@ -251,13 +251,20 @@ def youtube(request):
 def wiki(request):
     form = SearchForm()
     if request.method == "POST":
+        wiki_wiki = wikipediaapi.Wikipedia('en')
         form = SearchForm(request.POST)
-        search_input = request.POST['search']
-        search = wikipedia.page(search_input)
+        search_input = str(request.POST['search'])
+        #try:
+        search = wiki_wiki.page(search_input)
+        '''except wikipedia.DisambiguationError as e:
+            s = random.choice(e.options)
+            search = wikipedia.page(s)
+        except wikipedia.PageError as e:
+            return render(request,'portal/wiki.html',{'form':form,'error':'Some internal Error has occured'})'''
         context = {
             "form":form,
             "title":search.title,
-            "link":search.url,
+            "link":search.fullurl,
             "details":search.summary,
         }
         return render(request,'portal/wiki.html',context)

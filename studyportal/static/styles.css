@@ -144,7 +144,7 @@
   color:black;
 }
 .content-container{
-  
+
     overflow-y: auto;
     height: 400px;
 }
@@ -170,4 +170,11 @@
 }
 .footer-text{
   text-decoration:none;
+}
+.exact-title {
+  text-transform: capitalize;
+  font-size: 30px;
+}
+.exact-card-title {
+  font-size: 30px;
 }

@@ -48,6 +48,9 @@
                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout <i class="fas fa-sign-out-alt"></i></a></li>
                   </ul>
                 </li>
+                {% else %}
+                <a class = "nav-link" href = "{% url 'account_signup' %}">SignUp</a>
+                <a class = "nav-link" href = "{% url 'account_login' %}">Login</a>
               {% endif %}
             </ul>
           </div>

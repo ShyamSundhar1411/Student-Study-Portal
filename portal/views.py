@@ -256,11 +256,8 @@ def wiki(request):
         search_input = str(request.POST['search'])
         #try:
         search = wiki_wiki.page(search_input)
-        '''except wikipedia.DisambiguationError as e:
-            s = random.choice(e.options)
-            search = wikipedia.page(s)
-        except wikipedia.PageError as e:
-            return render(request,'portal/wiki.html',{'form':form,'error':'Some internal Error has occured'})'''
+        if not search.fullurl:
+            search.fullurl = ''
         context = {
             "form":form,
             "title":search.title,

@@ -73,7 +73,7 @@ class NoteDeleteView(LoginRequiredMixin,generic.DeleteView):
     slug_field = Note.slug
     template_name = "portal/notes/DeleteNote.html"
     def get_object(self):
-        note = super(NoteUpdateView,self).get_object()
+        note = super(NoteDeleteView,self).get_object()
         if note.user != self.request.user:
             raise Http404
         return note

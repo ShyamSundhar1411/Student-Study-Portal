@@ -26,7 +26,7 @@ environ.Env.read_env()
 SECRET_KEY = env.str('SECRET_KEY', default='ThisIsAWeakSauceSecretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['study-portaru.herokuapp.com','http://study-portaru.herokuapp.com','https://study-portaru.herokuapp.com']
 
@@ -68,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'studyportal.urls'
@@ -146,7 +147,6 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR/'studyportal/static'
 ]
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -215,3 +215,4 @@ EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env.int('EMAIL_PORT')
 DEFAULT_FROM_EMAIL = 'Study Portal Team <noreply@lazynotes.com>'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -64,6 +64,7 @@ whitenoise = "==5.3.0"
 PyJWT = "==2.1.0"
 wikipedia = "*"
 youtube-search-python = "*"
+wikipedia-api = "*"
 
 [dev-packages]
 

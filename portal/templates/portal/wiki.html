@@ -14,7 +14,7 @@
   {% if title %}
   <div class = "row justify-content-center">
     <div class = "col-md-6">
-      <a class = "custom-link" href = "{{link}}" _blank = True>
+      <a class = "custom-link" href = "{{link}}" target = "_blank">
       <div class = "card mb-2">
         <div class = "card-header">
           <p class = "exact-title text-center">{{title}}</p>
@@ -22,12 +22,17 @@
         <div class = "card-body">
           <h5 class = "card-title text-center">Summary</h5>
           <hr/>
+          {% if details %}
             <p class = "content-container">{{details}}</p>
+          {% else %}
+          <p class = "text-center">Find out more at<a href = "https://en.wikipedia.org/wiki/Main_Page" target = "_blank"> WikiPedia</a></p>
+          {% endif %}
         </div>
       </div>
     </a>
     </div>
   </div>
   {% endif %}
+  <a class = "btn btn-success" href = "{% url 'home' %}"><i class = "fas fa-arrow-left"></i> Go Back</a>
 </div>
 {% endblock %}

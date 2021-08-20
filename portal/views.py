@@ -257,16 +257,19 @@ def wiki(request):
         #try:
         search = wiki_wiki.page(search_input)
         try:
-            context = {
-                "form":form,
-                "title":search.title,
-                "link":search.fullurl,
-                "details":search.summary,
-            }
-            return render(request,'portal/wiki.html',context)
-        except :
-            messages.error(request,'Make Sure you searched it correctly.This portal does not support case-sensitive searches!!')
-            return render(request,'portal/wiki.html',{'form':form})
+            link = search.canonicalurl
+        except:
+            link = "#"
+        else:
+            link = "#"
+
+        context = {
+            "form":form,
+            "title":search.title,
+            "link":link,
+            "details":search.summary,
+        }
+        return render(request,'portal/wiki.html',context)
     else:
         return render(request,'portal/wiki.html',{"form":form})
 @login_required

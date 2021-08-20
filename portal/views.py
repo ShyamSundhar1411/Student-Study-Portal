@@ -15,6 +15,7 @@ from django.template.loader import get_template
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.clickjacking import xframe_options_exempt
 from . models import ToDo,Note
 from . tasks import send_requested_pdf, send_requested_pdf_on_delete
 from . forms import SearchForm,UserForm,ProfileForm
@@ -223,6 +224,7 @@ def books(request):
         return render(request,'portal/books.html',context)
     else:
         return render(request,'portal/books.html',{"form":form})
+@xframe_options_exempt
 def youtube(request):
     form = SearchForm()
     if request.method == "POST":

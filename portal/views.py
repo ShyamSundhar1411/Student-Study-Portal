@@ -82,7 +82,6 @@ class NoteDeleteView(LoginRequiredMixin,generic.DeleteView):
         render_pdf_send_mail_on_delete(self.request,note.id)
         return reverse('view_all_notes')
 #Function Based Views
-@login_required
 def home(request):
     return render(request,'portal/home.html')
 @login_required
@@ -160,7 +159,6 @@ def render_pdf_send_mail_on_delete(request,pk):
     filename = str(note.title)+'(BackUp).pdf'
     send_requested_pdf_on_delete(filename,pdf,request.user.id)
     messages.info(request,"Deletion Successful.A backup of this note has been sent to the registered email.")
-@login_required
 def dictionary(request):
     form = SearchForm()
     if request.method == "POST":
@@ -192,7 +190,6 @@ def dictionary(request):
         return render(request,'portal/dictionary.html',context)
     else:
         return render(request,'portal/dictionary.html',{'form':form})
-@login_required
 def books(request):
     form = SearchForm()
     if request.method == "POST":
@@ -226,7 +223,6 @@ def books(request):
         return render(request,'portal/books.html',context)
     else:
         return render(request,'portal/books.html',{"form":form})
-@login_required
 def youtube(request):
     form = SearchForm()
     if request.method == "POST":
@@ -250,7 +246,6 @@ def youtube(request):
         return render(request,'portal/youtube.html',context)
     else:
         return render(request,'portal/youtube.html',{"form":form})
-@login_required
 def wiki(request):
     form = SearchForm()
     if request.method == "POST":

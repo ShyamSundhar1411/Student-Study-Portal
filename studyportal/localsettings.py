@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'tinymce',
     'autoslug',
     'crispy_forms',
+    "crispy_bootstrap5",
     'django_celery_results',
     #Authentication
     'allauth',
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'studyportal.urls'
@@ -218,3 +220,6 @@ EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env.int('EMAIL_PORT')
 DEFAULT_FROM_EMAIL = 'Study Portal Team <noreply@lazynotes.com>'
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

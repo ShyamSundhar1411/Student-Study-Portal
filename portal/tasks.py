@@ -1,6 +1,6 @@
 from celery import shared_task
 from django.core.mail import EmailMessage
-from studyportal.settings import DEFAULT_FROM_EMAIL as me
+from studyportal.localsettings import DEFAULT_FROM_EMAIL as me
 from django.contrib.auth.models import User
 @shared_task
 def send_requested_pdf(filename,note,user_id):

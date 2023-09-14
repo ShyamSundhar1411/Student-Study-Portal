@@ -4,7 +4,7 @@ from celery import Celery
 from .settings import INSTALLED_APPS
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'studyportal.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'studyportal.localsettings')
 
 app = Celery('studyportal')
 
